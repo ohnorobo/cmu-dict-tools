@@ -1,0 +1,113 @@
+#CMU, TIMIT, IPA, example, mappings
+# http://roch.sdsu.edu/cs682/IPA-CMU-TIMIT-Phoneset.pdf
+
+# 0 - unstresses
+# 1 - primary stress
+# 2 - secondary stress
+
+###vowels
+#these only appear with stress marks
+
+#AA
+AA1 aa  ɑ
+AA2 aa  ɑ
+AA3 aa  ɑ
+
+#AE
+AE1 ae  æ
+AE2 ae  æ
+AE3 ae  æ
+
+#AH
+AH0 ax  ə
+AH1 a   ʌ
+AH2 a   ʌ
+
+#A0
+A01 ao  ɔ
+A02 ao  ɔ
+A03 ao  ɔ
+
+#EH
+EH1 eh  ɛ
+EH2 eh  ɛ
+EH3 eh  ɛ
+
+#IH
+IH1 ih  ɪ
+IH2 ih  ɪ
+IH3 ih  ɪ
+
+#IY
+IY1 iy  i
+IY2 iy  i
+IY3 iy  i
+
+#UH
+UH1 uh  ʊ
+UH2 uh  ʊ
+UH3 uh  ʊ
+
+#UW
+UW1 uw  u
+UW2 uw  u
+UW3 uw  u
+
+#AY
+AY1 ay  aɪ
+AY2 ay  aɪ
+AY3 ay  aɪ
+
+#AW
+AW1 aw  aʊ
+AW2 aw  aʊ
+AW3 aw  aʊ
+
+#EY
+EY1 ey  eɪ
+EY2 ey  eɪ
+EY3 ey  eɪ
+
+#OW
+OW1 ow  oʊ
+OW2 ow  oʊ
+OW3 ow  oʊ
+
+#OY
+OY1 oy  ɔɪ
+OY2 oy  ɔɪ
+OY3 oy  ɔɪ
+
+#ER
+ER0 axr ɚ
+ER1 er  ɝ
+ER2 er  ɝ
+
+###Consonants
+
+#unusual consonants
+NG  ng  ŋ
+SH  sh  ʃ
+CH  ch  tʃ
+Y   y   j
+ZJ  zh  ʒ
+JH  jh  dʒ
+DH  dh  ð
+TH  th  θ
+
+#normal consonants
+P   p   p
+B   b   b
+M   m   m
+T   t   t
+D   d   d
+N   n   n
+K   k   k
+G   g   g
+S   s   s
+Z   z   z
+F   f   f
+V   v   v
+W   w   w
+HH  h   h
+R   r   r
