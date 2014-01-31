@@ -5,6 +5,9 @@ from pprint import pprint
 import codecs
 
 
+###Utility Functions###
+#######################
+
 CMU_DICT_FILE = "data/cmudict/cmudict.0.7a"
 # returns a dictionary if {english_word : [phoneme-reps]}
 # some english words have more than one phoneme repr
@@ -45,19 +48,95 @@ def read_in_conversion():
 IPA_CONV, TIMBL_CONV = read_in_conversion()
 
 # takes ['RE', 'EH1', 'V', 'Z']
-# returns 
+# returns rɛvz
 def ipa(phonemes):
   ipa = []
   for phone in phonemes:
     ipa.append(IPA_CONV[phone])
   return "".join(ipa)
 
+STRESS_MARKS = ['-', '\\', '/']
+# 0 - , unstressed
+# 1 \ , primary stress
+# 2 / , secondary stress
 
-#takes cmu-phones
-#reutrns timbl
-def timbl(phonemes):
+# takes ['AE1', 'M', 'P', 'ER0', 'S', 'AE2', 'N', 'D']
+# \  - /
+# æmpɚsænd
+def ipa_stress(phonemes):
+  stress = []
+  for phone in phonemes:
+    ipa = IPA_CONV[phone]
+    if not phone.isalpha():
+      if '0' in phone:
+        stress.append(STRESS_MARKS[0])
+      elif '1' in phone:
+        stress.append(STRESS_MARKS[1])
+      elif '2' in phone:
+        stress.append(STRESS_MARKS[2])
+
+      stress.append(' '*(len(ipa)-2))
+    else:
+      stress.append(' '*len(ipa))
+
+  return "".join(stress)
+
+
+
+###TRAIING###
+#############
+
+# Unsupervized alignment finding for grapheme/phoneme matches
+#
+# 1
+# measure unigram/bigrams probs for
+# graphemes
+# phonemes
+#
+# 1.2
+# choose a set of random grapheme - [phonemes] probs
+# ???
+#
+# 2
+# then find the 'best pairing' for each word
+#
+# 3
+# measure co-occurence probs for
+# grapheme -> [phoneme] s
+#
+# measure amt of change from the last set of co-occurence probs
+#
+# repeat 2 and 3 until convergence
+
+# returns a model
+def run_training():
   pass
 
+
+def get_unigram_grapheme_counts(dic):
+  pass
+
+def get_unigram_phoneme_counts(dic):
+  pass
+
+def get_bigram_grapheme_counts(dic):
+  pass
+
+def get_bigram_phoneme_counts(dic):
+  pass
+
+def get_random_co_counts():
+  pass
+
+
+
+
+
+
+
+
+###UNIT TESTING###
+##################
 
 if __name__ == "__main__":
   d = read_in_cmudict()
@@ -66,4 +145,19 @@ if __name__ == "__main__":
     print(word)
     prons = d[word]
     for pron in prons:
+      print("   " + ipa_stress(pron))
       print("   " + ipa(pron).encode('utf-8'))
+
+import unittest
+
+class TestCMUTools(unittest.TestCase):
+
+  def test_ipa_stress(self):
+    phonemes = ['AE1', 'M', 'P', 'ER0', 'S', 'AE2', 'N', 'D']
+    self.assertEqual("\  - /  ", ipa_stress(phonemes))
+     # \  - /
+     # æmpɚsænd
+
+  def test_ipa(self):
+    phonemes = ['R', 'EH1', 'V', 'Z']
+    self.assertEqual(u"r\025bvz", ipa(phonemes))
